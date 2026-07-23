@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.barryrichards.watchd_v2.model.Account;
@@ -13,11 +14,12 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @RestController
+@RequestMapping("/account")
 public class AccountController {
 
     private AccountService accountService;
     
-    @GetMapping("/account/{id}")
+    @GetMapping("/{id}")
     public Account getAccountById(@PathVariable UUID id) {
         return accountService.findById(id);
     }
