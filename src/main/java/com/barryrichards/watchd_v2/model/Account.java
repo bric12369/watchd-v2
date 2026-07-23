@@ -1,6 +1,6 @@
 package com.barryrichards.watchd_v2.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
@@ -30,7 +30,7 @@ public class Account {
     private String city;
     private String country;
     @Column(name = "date_of_birth")
-    private LocalDateTime dateOfBirth;
+    private LocalDate dateOfBirth;
     @Column(name = "avatar_type")
     private String avatarType;
     @Column(name = "avatar_key")
