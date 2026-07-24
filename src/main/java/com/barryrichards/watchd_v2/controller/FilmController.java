@@ -28,8 +28,13 @@ public class FilmController {
         return filmService.findById(id);
     }
 
+    // @GetMapping("/search")
+    // public TmdbSearchResponse getFilmByTitle(@RequestParam String title) {
+    //     return tmdbClient.searchByTitle(title);
+    // }
+
     @GetMapping("/search")
-    public TmdbSearchResponse getFilmByTitle(@RequestParam String title) {
-        return tmdbClient.searchByTitle(title);
+    public Film getFilmByTmdbId(@RequestParam String tmdbId) {
+        return filmService.findOrCreateByTmdbId(tmdbId);
     }
 }
