@@ -21,16 +21,17 @@ CREATE TABLE film(
 );
 
 CREATE TABLE follow(
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     follower_id UUID NOT NULL REFERENCES account(id) ON DELETE CASCADE,
     followed_id UUID NOT NULL REFERENCES account(id) ON DELETE CASCADE,
-    PRIMARY KEY (follower_id, followed_id)
+    UNIQUE (follower_id, followed_id)
 );
 
 CREATE TABLE diary_entry(
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     account_id UUID NOT NULL REFERENCES account(id),
     film_id UUID NOT NULL REFERENCES film(id),
-    rating DECIMAL(2, 1),
+    rating DECIMAL(2, 1) NOT NULL,
     review_text TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
