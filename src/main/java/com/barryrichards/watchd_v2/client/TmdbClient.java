@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 
+import com.barryrichards.watchd_v2.dto.TmdbFilmResult;
 import com.barryrichards.watchd_v2.dto.TmdbSearchResponse;
 
 @Component
@@ -17,5 +18,9 @@ public class TmdbClient {
 
     public TmdbSearchResponse searchByTitle(String title) {
         return restClient.get().uri("/search/movie?query={title}", title).retrieve().body(TmdbSearchResponse.class);
+    }
+
+    public TmdbFilmResult getByTmdbId(String tmdbId) {
+        return restClient.get().uri("/movie/" + tmdbId).retrieve().body(TmdbFilmResult.class);
     }
 }
