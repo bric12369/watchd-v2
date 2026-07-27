@@ -3,7 +3,7 @@ import java.util.UUID;
 
 public record DiaryEntryRequest(
     UUID accountId,
-    UUID filmId,
+    String tmdbId,
     double rating,
     String reviewText
 ) {
