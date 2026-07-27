@@ -20,7 +20,9 @@ public class TmdbClient {
     }
 
     public TmdbSearchResponse searchByTitle(String title) {
-        return restClient.get().uri("/search/movie?query={title}", title).retrieve().body(TmdbSearchResponse.class);
+        return restClient.get().uri("/search/movie?query={title}", title).retrieve().onStatus(HttpStatusCode::is4xxClientError, (req, res) -> {
+            throw new CustomException("Film not found", "FILM_NOT_FOUND", HttpStatus.NOT_FOUND);
+        }).body(TmdbSearchResponse.class);
     }
 
     public TmdbFilmResult getByTmdbId(String tmdbId) {
