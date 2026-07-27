@@ -1,6 +1,7 @@
 package com.barryrichards.watchd_v2.service;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,10 @@ public class FilmService {
 
     private FilmRepository filmRepository;
     private TmdbClient tmdbClient;
+    
+    public Film findById(UUID id) {
+        return filmRepository.findById(id).orElse(null);
+    }
 
     public Film findOrCreateByTmdbId(String tmdbId) {
         try {
