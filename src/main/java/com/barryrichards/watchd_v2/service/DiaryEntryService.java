@@ -20,7 +20,7 @@ public class DiaryEntryService {
 
     public DiaryEntry postDiaryEntry(DiaryEntryRequest diaryEntryRequest) {
         Account account = accountService.findById(diaryEntryRequest.accountId());
-        Film film = filmService.findById(diaryEntryRequest.filmId());
+        Film film = filmService.findOrCreateByTmdbId(diaryEntryRequest.tmdbId());
         DiaryEntry entry = new DiaryEntry(account, film, diaryEntryRequest.rating());
         if (!diaryEntryRequest.reviewText().equals(null)) {
             entry.setReviewText(diaryEntryRequest.reviewText());

@@ -19,7 +19,7 @@ public class DiaryEntryController {
     
     private DiaryEntryService diaryEntryService;
 
-    @PostMapping("")
+    @PostMapping()
     public DiaryEntry saveDiaryEntry(@Valid @RequestBody DiaryEntryRequest diaryEntryRequest) {
         return diaryEntryService.postDiaryEntry(diaryEntryRequest);
     }
