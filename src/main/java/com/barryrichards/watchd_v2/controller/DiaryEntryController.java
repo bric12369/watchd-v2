@@ -1,5 +1,6 @@
 package com.barryrichards.watchd_v2.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +21,7 @@ public class DiaryEntryController {
     private DiaryEntryService diaryEntryService;
 
     @PostMapping()
-    public DiaryEntry saveDiaryEntry(@Valid @RequestBody DiaryEntryRequest diaryEntryRequest) {
-        return diaryEntryService.postDiaryEntry(diaryEntryRequest);
+    public ResponseEntity<DiaryEntry> saveDiaryEntry(@Valid @RequestBody DiaryEntryRequest diaryEntryRequest) {
+        return ResponseEntity.status(201).body(diaryEntryService.postDiaryEntry(diaryEntryRequest));
     }
 }
