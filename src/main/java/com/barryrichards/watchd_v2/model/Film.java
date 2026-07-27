@@ -29,12 +29,22 @@ public class Film {
     private String synopsis;
     @Column(name = "release_date")
     private LocalDate releaseDate;
+    private String tagline;
+    @Column(name = "original_language")
+    private String originalLanguage;
+    @Column(name = "original_title")
+    private String originalTitle;
+    private int runtime;
 
-    public Film(String tmdbId, String title, String posterUrl, String synopsis, LocalDate releaseDate) {
+    public Film(String tmdbId, String title, String posterUrl, String synopsis, LocalDate releaseDate, String tagline, String originalLanguage, String originalTitle, int runtime) {
         this.tmdbId = tmdbId;
         this.title = title;
         this.posterUrl = posterUrl;
         this.synopsis = synopsis;
         this.releaseDate = releaseDate;
+        this.tagline = tagline;
+        this.originalLanguage = originalLanguage;
+        this.originalTitle = originalTitle;
+        this.runtime = runtime;
     }
 }

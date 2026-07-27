@@ -33,7 +33,11 @@ public class FilmService {
                 String posterUrl = tmdbFilmResult.posterPath();
                 String synopsis = tmdbFilmResult.overview();
                 LocalDate releaseDate = tmdbFilmResult.releaseDate();
-                Film film = new Film(tmdbId, title, posterUrl, synopsis, releaseDate);
+                String tagline = tmdbFilmResult.tagline();
+                String originalLanguage = tmdbFilmResult.originalLanguage();
+                String originalTitle = tmdbFilmResult.originalTitle();
+                int runtime = tmdbFilmResult.runtime();
+                Film film = new Film(tmdbId, title, posterUrl, synopsis, releaseDate, tagline, originalLanguage, originalTitle, runtime);
                 return filmRepository.save(film);
             }
         } catch (Exception e) {
