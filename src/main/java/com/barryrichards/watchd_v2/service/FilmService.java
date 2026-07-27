@@ -24,25 +24,20 @@ public class FilmService {
     }
 
     public Film findOrCreateByTmdbId(String tmdbId) {
-        try {
-            if (filmRepository.existsByTmdbId(tmdbId)) {
-                return filmRepository.getByTmdbId(tmdbId).get();
-            } else {
-                TmdbFilmResult tmdbFilmResult = tmdbClient.getByTmdbId(tmdbId);
-                String title = tmdbFilmResult.title();
-                String posterUrl = tmdbFilmResult.posterPath();
-                String synopsis = tmdbFilmResult.overview();
-                LocalDate releaseDate = tmdbFilmResult.releaseDate();
-                String tagline = tmdbFilmResult.tagline();
-                String originalLanguage = tmdbFilmResult.originalLanguage();
-                String originalTitle = tmdbFilmResult.originalTitle();
-                int runtime = tmdbFilmResult.runtime();
-                Film film = new Film(tmdbId, title, posterUrl, synopsis, releaseDate, tagline, originalLanguage, originalTitle, runtime);
-                return filmRepository.save(film);
-            }
-        } catch (Exception e) {
-            System.out.println(">>>>>>>>>> " + e);
-            return null;
+        if (filmRepository.existsByTmdbId(tmdbId)) {
+            return filmRepository.getByTmdbId(tmdbId).get();
+        } else {
+            TmdbFilmResult tmdbFilmResult = tmdbClient.getByTmdbId(tmdbId);
+            String title = tmdbFilmResult.title();
+            String posterUrl = tmdbFilmResult.posterPath();
+            String synopsis = tmdbFilmResult.overview();
+            LocalDate releaseDate = tmdbFilmResult.releaseDate();
+            String tagline = tmdbFilmResult.tagline();
+            String originalLanguage = tmdbFilmResult.originalLanguage();
+            String originalTitle = tmdbFilmResult.originalTitle();
+            int runtime = tmdbFilmResult.runtime();
+            Film film = new Film(tmdbId, title, posterUrl, synopsis, releaseDate, tagline, originalLanguage, originalTitle, runtime);
+            return filmRepository.save(film);
         }
     }
 }
