@@ -4,6 +4,8 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
+import com.barryrichards.watchd_v2.dto.LoginRequest;
+import com.barryrichards.watchd_v2.dto.SignUpRequest;
 import com.barryrichards.watchd_v2.model.Account;
 import com.barryrichards.watchd_v2.repository.AccountRepository;
 
@@ -17,5 +19,14 @@ public class AccountService {
 
     public Account findById(UUID id) {
         return accountRepository.findById(id).orElse(null);
+    }
+
+    public Account createAccount(SignUpRequest signUpRequest) {
+        Account account = new Account(signUpRequest.email(), signUpRequest.username(), signUpRequest.password());
+        return accountRepository.save(account);
+    }
+
+    public Account findByEmail(LoginRequest loginRequest) {
+        return accountRepository.getByEmail(loginRequest.email()).orElse(null);
     }
 }
